@@ -1,12 +1,12 @@
-import { Role } from './schemas/Role';
-import { OrderItem } from './schemas/OrderItem';
-import { Order } from './schemas/Order';
 import { createAuth } from '@keystone-next/auth';
 import { config, createSchema } from '@keystone-next/keystone/schema';
 import {
   withItemData,
   statelessSessions,
 } from '@keystone-next/keystone/session';
+import { Role } from './schemas/Role';
+import { OrderItem } from './schemas/OrderItem';
+import { Order } from './schemas/Order';
 import { User } from './schemas/User';
 import 'dotenv/config';
 import { Product } from './schemas/Product';
@@ -18,7 +18,7 @@ import { CartItem } from './schemas/CartItem';
 import { extendGraphqlSchema } from './mutations';
 import { permissionsList } from './schemas/fields';
 
-const databaseURL = process.env.DATABASE_URL;
+const databaseURL = process.env.MONGO_URI;
 
 const sessionConfig = {
   maxAge: 60 * 60 * 24 * 360,
