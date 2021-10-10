@@ -43,7 +43,7 @@ export default withAuth(
   config({
     server: {
       cors: {
-        origin: [process.env.FRONTEND_URL],
+        origin: ['https://www.acuteangle.us'],
         credentials: true,
       },
     },
