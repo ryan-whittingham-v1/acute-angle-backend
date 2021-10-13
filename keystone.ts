@@ -43,7 +43,8 @@ export default withAuth(
   config({
     server: {
       cors: {
-        origin: ['https://www.acuteangle.us'],
+        // origin: ['https://www.acuteangle.us', 'http://localhost:3000'],
+        origin: [process.env.FRONTEND_URL],
         credentials: true,
       },
     },
@@ -52,9 +53,9 @@ export default withAuth(
       url: databaseURL,
       async onConnect(keystone) {
         console.log('Connected to the database.');
-        if (process.argv.includes('--seed-data')) {
+        /* if (process.argv.includes('--seed-data')) {
           await insertSeedData(keystone);
-        }
+        } */
       },
     },
     lists: createSchema({
