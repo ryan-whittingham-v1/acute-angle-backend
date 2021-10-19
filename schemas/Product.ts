@@ -1,13 +1,18 @@
 import { integer, relationship, select, text } from '@keystone-next/fields';
 import { list } from '@keystone-next/keystone/schema';
-import { rules, isSignedIn } from '../access';
+import { rules, isSignedIn, permissions } from '../access';
 
 export const Product = list({
   access: {
-    create: isSignedIn,
+    create: permissions.canManageProducts,
     read: () => true,
-    update: rules.canManageProducts,
-    delete: rules.canManageProducts,
+    update: permissions.canManageProducts,
+    delete: permissions.canManageProducts,
+  },
+  ui: {
+    hideCreate: (args) => !permissions.canManageProducts(args),
+    hideDelete: (args) => !permissions.canManageProducts(args),
+    isHidden: (args) => !permissions.canManageProducts(args),
   },
   fields: {
     name: text({ isRequired: true }),

@@ -7,11 +7,15 @@ export const User = list({
     create: () => true,
     read: rules.canManageUsers,
     update: rules.canManageUsers,
+    // only people with the permission can delete themselves!
+    // You can't delete yourself
     delete: permissions.canManageUsers,
   },
   ui: {
+    // hide the backend UI from regular users
     hideCreate: (args) => !permissions.canManageUsers(args),
     hideDelete: (args) => !permissions.canManageUsers(args),
+    isHidden: (args) => !permissions.canManageProducts(args),
   },
   fields: {
     name: text({ isRequired: true }),
@@ -32,10 +36,17 @@ export const User = list({
         create: permissions.canManageUsers,
         update: permissions.canManageUsers,
       },
+      /* defaultValue: () => ({
+        connect: { id: '61691486fa2c1c4328f5f196' },
+      }), */
     }),
     products: relationship({
       ref: 'Product.user',
       many: true,
+      access: {
+        create: permissions.canManageProducts,
+        update: permissions.canManageProducts,
+      },
     }),
   },
 });

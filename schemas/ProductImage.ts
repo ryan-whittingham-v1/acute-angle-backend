@@ -14,10 +14,15 @@ export const cloudinary = {
 
 export const ProductImage = list({
   access: {
-    create: isSignedIn,
+    create: permissions.canManageProducts,
     read: () => true,
     update: permissions.canManageProducts,
     delete: permissions.canManageProducts,
+  },
+  ui: {
+    hideCreate: (args) => !permissions.canManageProducts(args),
+    hideDelete: (args) => !permissions.canManageProducts(args),
+    isHidden: (args) => !permissions.canManageProducts(args),
   },
   fields: {
     image: cloudinaryImage({
@@ -26,10 +31,5 @@ export const ProductImage = list({
     }),
     altText: text(),
     product: relationship({ ref: 'Product.photo' }),
-  },
-  ui: {
-    listView: {
-      initialColumns: ['image', 'altText', 'product'],
-    },
   },
 });
