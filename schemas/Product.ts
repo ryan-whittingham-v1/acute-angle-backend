@@ -5,7 +5,7 @@ import { rules, isSignedIn, permissions } from '../access';
 export const Product = list({
   access: {
     create: permissions.canManageProducts,
-    read: () => true,
+    read: true,
     update: permissions.canManageProducts,
     delete: permissions.canManageProducts,
   },
