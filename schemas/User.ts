@@ -43,10 +43,10 @@ export const User = list({
     products: relationship({
       ref: 'Product.user',
       many: true,
-      access: {
+      /*  access: {
         create: permissions.canManageProducts,
         update: permissions.canManageProducts,
-      },
+      }, */
     }),
   },
 });

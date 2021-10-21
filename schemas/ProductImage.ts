@@ -13,7 +13,7 @@ export const cloudinary = {
 };
 
 export const ProductImage = list({
-  access: {
+  /* access: {
     create: permissions.canManageProducts,
     read: () => true,
     update: permissions.canManageProducts,
@@ -23,7 +23,7 @@ export const ProductImage = list({
     hideCreate: (args) => !permissions.canManageProducts(args),
     hideDelete: (args) => !permissions.canManageProducts(args),
     isHidden: (args) => !permissions.canManageProducts(args),
-  },
+  }, */
   fields: {
     image: cloudinaryImage({
       cloudinary,

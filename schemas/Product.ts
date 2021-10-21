@@ -3,17 +3,19 @@ import { list } from '@keystone-next/keystone/schema';
 import { rules, isSignedIn, permissions } from '../access';
 
 export const Product = list({
+  /* 
   access: {
-    /*   create: permissions.canManageProducts,
+      create: permissions.canManageProducts,
     read: true,
     update: permissions.canManageProducts,
-    delete: permissions.canManageProducts, */
+    delete: permissions.canManageProducts, 
   },
   ui: {
-    /* hideCreate: (args) => !permissions.canManageProducts(args),
+    hideCreate: (args) => !permissions.canManageProducts(args),
     hideDelete: (args) => !permissions.canManageProducts(args),
-    isHidden: (args) => !permissions.canManageProducts(args), */
+    isHidden: (args) => !permissions.canManageProducts(args), 
   },
+  */
   fields: {
     name: text({ isRequired: true }),
     description: text({
