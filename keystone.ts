@@ -11,6 +11,7 @@ import { User } from './schemas/User';
 import 'dotenv/config';
 import { Product } from './schemas/Product';
 import { ProductImage } from './schemas/ProductImage';
+import { insertSeedData } from './seed-data';
 import { sendPasswordResetEmail } from './lib/mail';
 import { CartItem } from './schemas/CartItem';
 
@@ -42,7 +43,8 @@ export default withAuth(
   config({
     server: {
       cors: {
-        origin: [process.env.FRONTEND_URL],
+        origin: ['https://www.acuteangle.us'],
+        // origin: [process.env.FRONTEND_URL],
         credentials: true,
       },
     },
@@ -51,6 +53,9 @@ export default withAuth(
       url: databaseURL,
       async onConnect(keystone) {
         console.log('Connected to the database.');
+        /* if (process.argv.includes('--seed-data')) {
+          await insertSeedData(keystone);
+        } */
       },
     },
     lists: createSchema({
